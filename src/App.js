@@ -112,8 +112,36 @@ const partners = [
   'Bolt',
 ];
 
+const contactCards = [
+  {
+    title: 'Send us an email',
+    action: 'Email us',
+    href: 'mailto:info@harmonyhealth.co.za',
+    subtitle: 'info@harmonyhealth.co.za',
+    image:
+      'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1200&q=80&sat=-20',
+  },
+  {
+    title: 'WhatsApp or Call us',
+    action: 'WhatsApp',
+    href: 'https://wa.me/27210017024',
+    subtitle: 'Call 021 001 7024',
+    image:
+      'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1200&q=80&sat=-70&blur=1',
+  },
+  {
+    title: 'Head Office',
+    action: 'View on Maps',
+    href: 'https://maps.google.com/?q=55%20Morningside%20St,%20Cape%20Town',
+    subtitle: '55 Morningside Street, Ndabeni',
+    image:
+      'https://images.unsplash.com/photo-1485841890310-6a055c88698a?auto=format&fit=crop&w=1200&q=80',
+  },
+];
+
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [page, setPage] = useState('home');
 
   useEffect(() => {
     const revealElements = document.querySelectorAll('[data-reveal]');
@@ -133,7 +161,27 @@ function App() {
     revealElements.forEach((el) => observer.observe(el));
 
     return () => observer.disconnect();
-  }, []);
+  }, [page]);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [page]);
+
+  const handleNav = (target) => {
+    setMenuOpen(false);
+    if (target === 'contact') {
+      setPage('contact');
+      return;
+    }
+    setPage('home');
+    const id = target === 'about' ? 'about' : 'hero';
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 50);
+  };
 
   return (
     <div className="page">
@@ -152,18 +200,23 @@ function App() {
             <span />
           </button>
           <nav className={`nav-links ${menuOpen ? 'open' : ''}`}>
-            <a href="#hero">Home</a>
-            <a href="#services">Services</a>
-            <a href="#clinic-types">Clinics</a>
-            <a href="#network">Network</a>
-            <a href="#special">Special</a>
-            <a href="#contact">Contact</a>
+            <button type="button" onClick={() => handleNav('home')}>
+              Home
+            </button>
+            <button type="button" onClick={() => handleNav('about')}>
+              About
+            </button>
+            <button type="button" onClick={() => handleNav('contact')}>
+              Contact
+            </button>
           </nav>
           <button className="pill primary booking-btn">Make a Booking</button>
         </div>
       </header>
 
       <main>
+        {page === 'home' ? (
+          <>
         <section id="hero" className="hero">
           <div className="hero-copy" data-reveal>
             <div className="price-pill">From R390</div>
@@ -341,6 +394,60 @@ function App() {
           </div>
           <button className="pill primary">Partner with Us</button>
         </section>
+          </>
+        ) : (
+          <section id="contact-page" className="section contact-page">
+            <div className="section-heading" data-reveal>
+              <h2>Contact Us</h2>
+              <p>
+                Reach out by email, WhatsApp, or visit our head office. We will
+                respond promptly to your request.
+              </p>
+            </div>
+            <div className="contact-card-grid">
+              {contactCards.map((card, index) => (
+                <article
+                  key={card.title}
+                  className="contact-card"
+                  data-reveal
+                  style={{
+                    backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.6)), url(${card.image})`,
+                    '--delay': `${index * 80}ms`,
+                  }}
+                >
+                  <div className="contact-card-body">
+                    <p className="eyebrow">{card.title}</p>
+                    <h3>{card.subtitle}</h3>
+                    <a className="pill primary" href={card.href} target="_blank" rel="noreferrer">
+                      {card.action}
+                    </a>
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            <div className="contact-body">
+              <div className="contact-form" data-reveal>
+                <h3>Send us a message</h3>
+                <input type="text" placeholder="Name" />
+                <input type="email" placeholder="Email" />
+                <textarea placeholder="Message" rows={4} />
+                <button className="pill primary" type="button">
+                  Send Message
+                </button>
+              </div>
+              <div className="contact-map" data-reveal>
+                <iframe
+                  title="HarmonyHealth Map"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3310.585398866623!2d18.4702!3d-33.9189!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0:0x0!2zMzPCsDU1JzA4LjAiUyAxOMKwMjgnMTIuNyJF!5e0!3m2!1sen!2sza!4v1700000000000"
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
+            </div>
+          </section>
+        )}
       </main>
 
       <footer id="contact" className="footer">
@@ -359,15 +466,27 @@ function App() {
           <div className="footer-links">
             <div>
               <h4>Company</h4>
-              <a href="#hero">Home</a>
-              <a href="#about">About</a>
-              <a href="#services">Services</a>
+              <button type="button" onClick={() => handleNav('home')}>
+                Home
+              </button>
+              <button type="button" onClick={() => handleNav('about')}>
+                About
+              </button>
+              <button type="button" onClick={() => handleNav('contact')}>
+                Contact
+              </button>
             </div>
             <div>
               <h4>Network</h4>
-              <a href="#network">Clinics</a>
-              <a href="#network">Occupational</a>
-              <a href="#partners">Partners</a>
+              <button type="button" onClick={() => handleNav('home')}>
+                Clinics
+              </button>
+              <button type="button" onClick={() => handleNav('home')}>
+                Occupational
+              </button>
+              <button type="button" onClick={() => handleNav('home')}>
+                Partners
+              </button>
             </div>
           </div>
           <div className="footer-social">

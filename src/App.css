@@ -87,16 +87,21 @@ button {
   gap: 10px;
 }
 
-.nav-links a {
+.nav-links a,
+.nav-links button {
   color: var(--white);
   font-weight: 700;
   font-size: 17px;
   opacity: 0.95;
   padding: 4px 2px;
   transition: opacity 0.2s ease, transform 0.2s ease;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-links button:hover {
   opacity: 1;
   transform: translateY(-1px);
 }
@@ -352,9 +357,11 @@ main {
 .clinic-grid {
   width: 100%;
   max-width: 1320px;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
   gap: 22px;
+  justify-content: center;
 }
 
 .clinic-card {
@@ -400,10 +407,12 @@ main {
 .special-grid {
   width: 100%;
   max-width: 1280px;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
   gap: 22px;
   margin-top: 18px;
+  justify-content: center;
 }
 
 .special-card {
@@ -440,6 +449,89 @@ main {
   margin: 0;
   color: #e7f6ff;
   font-weight: 600;
+}
+
+.contact-page {
+  display: grid;
+  gap: 22px;
+  justify-items: center;
+}
+
+.contact-card-grid {
+  width: 100%;
+  max-width: 1080px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.contact-card {
+  position: relative;
+  min-height: 220px;
+  border-radius: 18px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  box-shadow: var(--shadow);
+}
+
+.contact-card-body {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  gap: 10px;
+  align-content: end;
+  padding: 18px;
+  color: var(--white);
+}
+
+.contact-card-body h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.contact-body {
+  width: 100%;
+  max-width: 1080px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 16px;
+  align-items: start;
+}
+
+.contact-form {
+  display: grid;
+  gap: 10px;
+  background: var(--white);
+  padding: 18px;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+
+.contact-form h3 {
+  margin: 0 0 4px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #d9e2ea;
+  padding: 12px 14px;
+  font-family: inherit;
+  font-size: 15px;
+}
+
+.contact-form textarea {
+  resize: vertical;
+}
+
+.contact-map iframe {
+  width: 100%;
+  min-height: 320px;
+  border: 0;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
 }
 
 .card-grid {
@@ -609,11 +701,17 @@ main {
   color: var(--white);
 }
 
-.footer-links a {
+.footer-links a,
+.footer-links button {
   display: block;
   color: #e6f8f7;
   margin-bottom: 6px;
   font-weight: 600;
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
 }
 
 .footer-social {
@@ -708,7 +806,8 @@ main {
     display: flex;
   }
 
-  .nav-links a {
+  .nav-links a,
+  .nav-links button {
     padding: 6px 0;
     width: 100%;
     text-align: center;
@@ -808,6 +907,20 @@ main {
   .scope-icon lord-icon {
     width: 120px;
     height: 120px;
+  }
+
+  .contact-card-grid,
+  .contact-body {
+    max-width: 100%;
+    gap: 12px;
+  }
+
+  .contact-body {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-map iframe {
+    min-height: 260px;
   }
 }
 @media (max-width: 860px) {
