@@ -77,8 +77,15 @@ button {
   align-items: center;
 }
 
+.brand-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
 .brand img {
-  height: 150px;
+  height: 100px;
 }
 
 .nav-links {
@@ -225,8 +232,8 @@ main {
 
 .consultation-card {
   position: absolute;
-  top: 26%;
-  left: 12%;
+  bottom: 12%;
+  left: 10%;
   background: var(--accent);
   color: var(--white);
   border-radius: 20px;
@@ -275,7 +282,7 @@ main {
 
 .section p {
   margin: 0;
-  color: var(--muted);
+  color: #fff;
   max-width: 640px;
 }
 
@@ -594,13 +601,16 @@ main {
 }
 
 .map-figure {
-  width: 100%;
+  width: 54%;
   height: 360px;
   border-radius: 18px;
-  background: radial-gradient(circle at 20% 30%, rgba(0, 177, 168, 0.12), transparent 30%),
+  background:
+    radial-gradient(circle at 20% 30%, rgba(0, 177, 168, 0.12), transparent 30%),
     radial-gradient(circle at 80% 20%, rgba(233, 75, 88, 0.12), transparent 38%),
-    url('https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1600&q=80')
-      center/cover no-repeat;
+    var(--map-image);
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-size: auto auto, auto auto, cover;
+  background-position: 20% 30%, 80% 20%, center;
 }
 
 .about {
@@ -663,6 +673,18 @@ main {
   font-weight: 700;
   text-align: center;
   box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 84px;
+}
+
+.partner-chip img {
+  display: block;
+  max-height: 38px;
+  max-width: 140px;
+  margin: 0 auto;
+  object-fit: contain;
 }
 
 .footer {
@@ -724,7 +746,8 @@ main {
   gap: 10px;
 }
 
-.social-row span {
+.social-row span,
+.social-row a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -733,6 +756,13 @@ main {
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.16);
   font-weight: 700;
+  color: var(--white);
+  text-decoration: none;
+}
+
+.social-row i,
+.social-row svg {
+  color: var(--white);
 }
 
 .legal {
@@ -846,8 +876,8 @@ main {
   }
 
   .consultation-card {
-    top: 12%;
-    left: 10%;
+    bottom: 8%;
+    left: 12%;
   }
 
   .hero-copy {
@@ -943,6 +973,14 @@ main {
   }
 }
 
+@media (max-width: 700px) {
+  .map-figure {
+    height: 260px;
+    background-size: auto auto, auto auto, contain;
+    background-position: 20% 30%, 80% 20%, center;
+  }
+}
+
 @media (max-width: 520px) {
   .scope-grid {
     grid-template-columns: 1fr;
@@ -959,7 +997,3 @@ main {
     height: 110px;
   }
 }
-
-
-
-

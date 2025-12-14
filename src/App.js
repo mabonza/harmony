@@ -104,12 +104,12 @@ const aboutCards = [
 ];
 
 const partners = [
-  'Peotona Holdings',
-  'Shoprite',
-  'Checkers',
-  'Medirite',
-  'Western Cape Government',
-  'Bolt',
+  { name: 'Peotona Holdings', logo: '/Peotona.png' },
+  { name: 'Shoprite', logo: '/Shoprite-Logo-900x500.jpg' },
+  { name: 'Checkers', logo: '/checkers.jpg' },
+  { name: 'Medirite', logo: '/Medirite.png' },
+  { name: 'Western Cape Government', logo: '/WCG_logo.jpg' },
+  { name: 'Bolt', logo: '/Bolt_logo.png' },
 ];
 
 const contactCards = [
@@ -125,7 +125,7 @@ const contactCards = [
     title: 'WhatsApp or Call us',
     action: 'WhatsApp',
     href: 'https://wa.me/27210017024',
-    subtitle: 'Call 021 001 7024',
+    subtitle: 'Call +27 79 914 3367',
     image:
       'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1200&q=80&sat=-70&blur=1',
   },
@@ -187,9 +187,11 @@ function App() {
     <div className="page">
       <header className="topbar">
         <div className="topbar-inner">
-          <div className="brand">
-            <img src="/header-logo.png" alt="Harmony Health" />
-          </div>
+          <button type="button" className="brand-button" onClick={() => handleNav('home')}>
+            <div className="brand">
+              <img src="/header-logo.png" alt="Harmony Health" />
+            </div>
+          </button>
           <button
             className={`hamburger ${menuOpen ? 'open' : ''}`}
             aria-label="Toggle menu"
@@ -344,7 +346,10 @@ function App() {
             healthcare sites across South Africa.
           </p>
           <div className="map-card" data-reveal>
-            <div className="map-figure" />
+            <div
+              className="map-figure"
+              style={{ '--map-image': 'url("/SA-map.png")' }}
+            />
             <button className="pill primary">Find Your Clinic</button>
           </div>
         </section>
@@ -383,12 +388,16 @@ function App() {
           <div className="partner-logos">
             {partners.map((partner, index) => (
               <div
-                key={partner}
+                key={partner.name}
                 className="partner-chip"
                 data-reveal
                 style={{ '--delay': `${index * 50}ms` }}
               >
-                {partner}
+                {partner.logo ? (
+                  <img src={partner.logo} alt={partner.name} />
+                ) : (
+                  partner.name
+                )}
               </div>
             ))}
           </div>
@@ -439,7 +448,7 @@ function App() {
               <div className="contact-map" data-reveal>
                 <iframe
                   title="HarmonyHealth Map"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3310.585398866623!2d18.4702!3d-33.9189!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0:0x0!2zMzPCsDU1JzA4LjAiUyAxOMKwMjgnMTIuNyJF!5e0!3m2!1sen!2sza!4v1700000000000"
+                  src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d7196.497431187646!2d18.501484685631084!3d-33.87073205315142!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMzPCsDUyJzE3LjAiUyAxOMKwMzAnMTkuOCJF!5e0!3m2!1sen!2sza!4v1765741108145!5m2!1sen!2sza"
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
@@ -453,12 +462,14 @@ function App() {
       <footer id="contact" className="footer">
         <div className="footer-inner">
           <div className="footer-brand">
-            <div className="brand">
-              <img src="/footer-logo.png" alt="Harmony Health" />
-            </div>
+            <button type="button" className="brand-button" onClick={() => handleNav('home')}>
+              <div className="brand">
+                <img src="/footer-logo.png" alt="Harmony Health" />
+              </div>
+            </button>
             <p>Better care. Better service. Better outcomes.</p>
             <p className="contact">
-              info@harmonyhealth.co.za | 021 001 7024
+              info@harmonyhealth.co.za | +27 79 914 3367
               <br />
               55 Morningside St, Cape Town
             </p>
@@ -492,10 +503,55 @@ function App() {
           <div className="footer-social">
             <h4>Connect</h4>
             <div className="social-row">
-              <span>fb</span>
+              <a
+                aria-label="Facebook"
+                href="https://www.facebook.com/share/17Pecz17VQ/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M13.5 21V12.75H16.5L17 9.5H13.5V7.5C13.5 6.57 13.77 6 15.14 6H17V3.14C16.08 3.03 15.15 2.99 14.22 3C11.66 3 9.88 4.49 9.88 7.2V9.5H7V12.75H9.88V21H13.5Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </a>
               <span>in</span>
               <span>wa</span>
-              <span>ig</span>
+              <a
+                aria-label="Instagram"
+                href="https://www.instagram.com/clinicharmonyhealth_/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <rect
+                    x="4"
+                    y="4"
+                    width="16"
+                    height="16"
+                    rx="4"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  />
+                  <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="2" />
+                  <circle cx="17" cy="7" r="1.2" fill="currentColor" />
+                </svg>
+              </a>
             </div>
             <p className="legal">(c) 2025 HarmonyHealth. All rights reserved.</p>
           </div>
