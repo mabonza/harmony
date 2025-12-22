@@ -8,14 +8,14 @@ const scopeServices = [
     fallback: 'GC',
   },
   {
-    title: "Women’s Health",
+    title: "Women's Health",
     iconSrc: 'https://cdn.lordicon.com/tcauouay.json',
     trigger: 'hover',
     colors: 'primary:#f9c9c0,secondary:#324b43,tertiary:#b26836,quaternary:#ebe6ef',
     fallback: 'WH',
   },
   {
-    title: "Men’s Health",
+    title: "Men's Health",
     iconSrc: 'https://cdn.lordicon.com/dyfvgeqj.json',
     fallback: 'MH',
   },
@@ -41,19 +41,19 @@ const serviceDetails = [
       'Removal of Stitches',
       'Nebulisation',
     ],
-    image: '/medic-checkup.webp',
+    image: '/about.webp',
   },
   {
-    title: "Women’s Health",
+    title: "Women's Health",
     description:
-      'Dedicated to women’s wellbeing with personalised care and preventive screenings.',
+      'Dedicated to women&apos;s wellbeing with personalised care and preventive screenings.',
     items: ['Consultation', 'Pap Smear', 'Family Planning'],
     image: '/nurse.webp',
   },
   {
-    title: "Men’s Health",
+    title: "Men's Health",
     description:
-      'Focused on men’s unique health needs with early detection and long-term wellness care.',
+      'Focused on men&apos;s unique health needs with early detection and long-term wellness care.',
     items: ['Consultation', 'Prostate Screening'],
     image: '/doctor-consultation.webp',
   },
@@ -68,132 +68,70 @@ const serviceDetails = [
 
 const serviceGuideCategories = [
   {
-    id: 'general-health',
-    title: 'General Health',
+    id: "all-services",
+    title: "Service Guide",
     items: [
       {
-        title: 'Wellness & Tests',
-        price: 'From R100',
-        image: '/medic-checkup.webp',
+        title: "General Consultations & Care",
+        image: "/medic-checkup.webp",
         details: [
-          'Screening - Blood Pressure, Glucose, BMI',
-          'Rapid Tests - Cholesterol, Haemoglobin, Pregnancy, HIV & Drugs',
+          "Medical consultations",
+          "Blood pressure (BP) screening",
+          "Blood sugar screening",
+          "Injections",
+          "Rapid testing (HIV / STI)",
+          "Medical forms completion",
+          "Wound care",
+          "Removal of stitches",
+          "Nebulisation",
         ],
       },
       {
-        title: 'Injections',
-        price: 'From R100',
-        image: '/nurse.webp',
-        details: ['IM, SC, IV', 'Neurobion', 'Voltaren', 'Adult Hepatitis B & more'],
-      },
-      {
-        title: 'Consultation + Medication',
-        price: 'From R400',
-        image: '/doctor-consultation.webp',
+        title: "Women's Health Services",
+        image: "/women.webp",
         details: [
-          'Coughs, Colds & Flu',
-          'Urinary Tract Infections',
-          'Diarrhoea & Vomiting',
-          'Allergies & Rashes',
+          "Medical consultations",
+          "Pap smear screening",
+          "Family planning services",
         ],
       },
-    ],
-  },
-  {
-    id: 'baby-clinic',
-    title: 'Baby Clinic',
-    items: [
       {
-        title: 'Consultation + Medication',
-        price: 'From R390',
-        image: '/medic-checkup.webp',
-        details: ['Fever & Flu', 'Coughs & Colds', 'Eczema & Skin Rashes'],
+        title: "Men's Health Services",
+        image: "/men.webp",
+        details: ["Medical consultations", "Prostate screening"],
       },
       {
-        title: 'Baby Immunisations',
-        price: 'R150',
-        image: '/nurse.webp',
-        details: ['Birth to 2 years', '*Subject to state stock'],
-      },
-      {
-        title: 'Growth & Milestones',
-        price: 'R100',
-        image: '/doctor-consultation.webp',
-        details: ['Weigh-ins & measurements', 'Development checks'],
+        title: "Minor Medical Procedures",
+        image: "/micro-procedure.webp",
+        details: ["Minor medical procedures (prices available on enquiry)"],
       },
     ],
   },
+];
+
+const leadershipTeam = [
   {
-    id: 'womens-health',
-    title: "Women’s Health",
-    items: [
-      {
-        title: 'Pregnancy',
-        price: 'Test only - R50',
-        image: '/nurse.webp',
-        details: ['Consultation + Test - R390', 'Antenatal first visit - R550'],
-      },
-      {
-        title: 'Pap Smear',
-        price: 'Pap Smear R350 + Lab cost',
-        image: '/nurse.webp',
-        details: ['Implanon / IUD insertion or removal', 'Removal from R450'],
-      },
-      {
-        title: 'Consultation + Medication',
-        price: 'From R390',
-        image: '/doctor-consultation.webp',
-        details: ['General Women’s Health', 'Reproductive health'],
-      },
-    ],
+    name: 'Dr Doris Nyembwe',
+    role: 'Medical Lead MP 0725935',
+    image: '/R390-1024x1024.png',
+  },
+];
+
+const networkFeatures = [
+  {
+    title: 'THE HARMONY HEALTH WAY',
+    body:
+      'A patient-centred approach that delivers accessible, compassionate, and professional healthcare services, ensuring quality care for individuals and families at every stage of life.',
   },
   {
-    id: 'mens-health',
-    title: "Men’s Health",
-    items: [
-      {
-        title: 'Consultation + Medication',
-        price: 'From R390',
-        image: '/doctor-consultation.webp',
-        details: ['General consultation', 'Shingles, mumps'],
-      },
-      {
-        title: 'Erectile Dysfunction',
-        price: 'From R550',
-        image: '/doctor-consultation.webp',
-        details: ['Assessment + treatment plan'],
-      },
-      {
-        title: 'Prostate Screening',
-        price: 'From R390 + Lab costs',
-        image: '/doctor-consultation.webp',
-        details: ['Screening + referral as needed'],
-      },
-    ],
+    title: 'Our Care Approach',
+    body:
+      'Harmony Health Hub provides comprehensive healthcare services focused on prevention, early detection, and long-term wellbeing. Through general consultations, men’s and women’s health services, and minor procedures, we ensure personalised care tailored to each patient’s needs.',
   },
   {
-    id: 'procedures',
-    title: 'Procedures & Wound Care',
-    items: [
-      {
-        title: 'Minor Procedures',
-        price: 'From R590',
-        image: '/micro-procedure.webp',
-        details: ['Foreign body removal', 'Ear syringing', 'Abscess drainage'],
-      },
-      {
-        title: 'Stabilisation',
-        price: 'From R990',
-        image: '/micro-procedure.webp',
-        details: ['IV fluids, oxygen, retention', 'Extra costs apply'],
-      },
-      {
-        title: 'Sutures & Stitching',
-        price: 'From R650',
-        image: '/micro-procedure.webp',
-        details: ['Wound cleaning', 'Stitch removal'],
-      },
-    ],
+    title: 'Clinical Excellence',
+    body:
+      'Our experienced healthcare professionals deliver safe, reliable, and efficient medical services, guided by compassion, respect, and professionalism. Every consultation and procedure is designed to prioritise patient comfort, dignity, and peace of mind.',
   },
 ];
 
@@ -252,7 +190,7 @@ function ServiceGuideCarousel({ items }) {
         onClick={() => scrollToPage(pageIndex - 1)}
         aria-label="Previous services"
       >
-        ‹
+        �
       </button>
       <div className="service-carousel-track" ref={trackRef} onScroll={handleScroll}>
         {items.map((item) => (
@@ -283,7 +221,7 @@ function ServiceGuideCarousel({ items }) {
         onClick={() => scrollToPage(pageIndex + 1)}
         aria-label="Next services"
       >
-        ›
+        �
       </button>
       <div className="carousel-dots" aria-hidden="true">
         {Array.from({ length: pageCount }).map((_, i) => (
@@ -296,19 +234,19 @@ function ServiceGuideCarousel({ items }) {
 
 const aboutCards = [
   {
-    title: 'Meet the Team',
+    title: 'Quality Care',
     image:
-      'https://images.unsplash.com/photo-1530023367847-a683933f4177?auto=format&fit=crop&w=1200&q=80',
+      '/AdobeStock_211045328.webp',
   },
   {
-    title: 'Corporate Profile',
+    title: 'Patient Focused',
     image:
-      'https://images.unsplash.com/photo-1450101215322-bf5cd27642fc?auto=format&fit=crop&w=1200&q=80',
+      '/AdobeStock_138524993.webp',
   },
   {
-    title: 'The Network',
+    title: 'Accessible Care',
     image:
-      'https://images.unsplash.com/photo-1524492412937-4961d66aa114?auto=format&fit=crop&w=1200&q=80',
+      '/AdobeStock_499543937.webp',
   },
 ];
 
@@ -361,6 +299,7 @@ const contactCards = [
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [page, setPage] = useState('home');
+  const [modalItem, setModalItem] = useState(null);
 
   useEffect(() => {
     const revealElements = document.querySelectorAll('[data-reveal]');
@@ -394,6 +333,10 @@ function App() {
     }
     if (target === 'services') {
       setPage('services');
+      return;
+    }
+    if (target === 'about') {
+      setPage('about');
       return;
     }
     setPage('home');
@@ -480,7 +423,7 @@ function App() {
           <div className="section-heading" data-reveal>
             <h2>Our Services</h2>
             <p>
-              General care, preventive screenings, and minor procedures —
+              General care, preventive screenings, and minor procedures
               delivered with respect, compassion, and dedication to your wellbeing.
             </p>
           </div>
@@ -505,49 +448,6 @@ function App() {
                 <h3>{item.title}</h3>
               </article>
             ))}
-          </div>
-        </section>
-
-        <section id="service-details" className="section clinic-types">
-          <div className="section-heading" data-reveal>
-            <h2>Service Guide</h2>
-            <p>For detailed prices, please enquire at the clinic.</p>
-          </div>
-          <div className="service-guide-tabs" data-reveal>
-            {serviceGuideCategories.map((category) => (
-              <button
-                key={category.id}
-                type="button"
-                className="service-guide-tab"
-                onClick={() =>
-                  document.getElementById(`service-guide-${category.id}`)?.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start',
-                  })
-                }
-              >
-                {category.title}
-              </button>
-            ))}
-          </div>
-          <div className="service-guide-list">
-            {serviceGuideCategories.map((category, index) => (
-              <div
-                key={category.id}
-                id={`service-guide-${category.id}`}
-                className="service-guide-category"
-                data-reveal
-                style={{ '--delay': `${index * 80}ms` }}
-              >
-                <h3 className="service-guide-category-title">{category.title}</h3>
-                <ServiceGuideCarousel items={category.items} />
-              </div>
-            ))}
-          </div>
-          <div className="service-guide-cta">
-            <button className="pill ghost" type="button" onClick={() => handleNav('services')}>
-              View Services Page
-            </button>
           </div>
         </section>
 
@@ -678,13 +578,124 @@ function App() {
                 </article>
               ))}
             </div>
-            <div className="services-actions">
-              <button className="pill ghost" type="button" onClick={() => handleNav('home')}>
-                Back to Home
-              </button>
-              <button className="pill primary" type="button" onClick={() => handleNav('contact')}>
-                Contact Us
-              </button>
+            <section id="service-details" className="section clinic-types">
+              <div className="section-heading" data-reveal>
+                <h2>Service Guide</h2>
+                <p>For detailed prices, please enquire at the clinic.</p>
+              </div>
+              <div className="guide-grid">
+                {serviceGuideCategories[0].items.map((item) => (
+                  <article
+                    key={item.title}
+                    className="guide-card"
+                    style={{ '--guide-image': `url(${item.image})` }}
+                    onClick={() => setModalItem(item)}
+                  >
+                    <div className="guide-card-image" aria-hidden="true" />
+                    <div className="guide-card-body">
+                      <h4>{item.title}</h4>
+                      <ul className="guide-card-list">
+                        {item.details.map((line) => (
+                          <li key={line}>{line}</li>
+                        ))}
+                      </ul>
+                      <button className="pill guide-booking" type="button">
+                        Make a Booking
+                      </button>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </section>
+          <div className="services-actions">
+            <button className="pill ghost" type="button" onClick={() => handleNav('home')}>
+              Back to Home
+            </button>
+            <button className="pill primary" type="button" onClick={() => handleNav('contact')}>
+              Contact Us
+            </button>
+          </div>
+        </section>
+        ) : page === 'about' ? (
+          <section id="about-page" className="section about-page">
+            <div className="about-hero" data-reveal>
+              <div className="about-hero-body">
+                <p className="eyebrow">About Harmony Health Hub</p>
+                <h2>Care that connects communities</h2>
+                <p>
+                  Harmony Health Hub is a patient-centred healthcare clinic dedicated to providing
+                  accessible, affordable, and compassionate medical services for individuals and
+                  families. Guided by the principle "Because Your Health Matters Most," the clinic
+                  offers a wide range of services including general consultations, men's and women's
+                  health care, preventive screenings, and minor medical procedures.
+                </p>
+                <p>
+                  With a strong focus on early detection, wellness, and convenience, Harmony Health
+                  Hub delivers personalised care in a safe and professional environment. Our
+                  experienced healthcare team is committed to supporting patients at every stage of
+                  life through quality medical services that prioritise comfort, dignity, and peace
+                  of mind.
+                </p>
+                <button className="pill primary" type="button" onClick={() => handleNav('contact')}>
+                  View Patient Focused
+                </button>
+              </div>
+            </div>
+
+            <div className="section-heading" data-reveal>
+              <h2>Leadership</h2>
+              <p>Guided by experienced clinical leadership dedicated to better outcomes.</p>
+            </div>
+            <div className="leadership-grid" data-reveal>
+              {leadershipTeam.map((person) => (
+                <article key={person.name} className="leader-card">
+                  <div
+                    className="leader-photo"
+                    style={{ '--leader-image': `url(${person.image})` }}
+                    aria-hidden="true"
+                  />
+                  <div className="leader-body">
+                    <p className="leader-name">{person.name}</p>
+                    <p className="leader-role">{person.role}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            <div className="section-heading" data-reveal>
+              <h2>Quality Care in Focus</h2>
+              <p>Snapshots from across our network highlighting the care we deliver.</p>
+            </div>
+            <div className="card-grid about-grid">
+              {aboutCards.map((card, index) => (
+                <article
+                  key={card.title}
+                  className="about-card"
+                  data-reveal
+                  style={{
+                    backgroundImage: `url(${card.image})`,
+                    '--delay': `${index * 80}ms`,
+                  }}
+                >
+                  <div className="about-overlay" />
+                  <h3>{card.title}</h3>
+                </article>
+              ))}
+            </div>
+
+            <div className="network-feature" data-reveal>
+              <h3>THE HARMONY HEALTH WAY</h3>
+              <p className="netway-lede">
+                A patient-centred approach that delivers accessible, compassionate, and professional healthcare services, ensuring quality care for individuals and families at every stage of life.
+              </p>
+              <div className="feature-grid">
+                {networkFeatures.map((item) => (
+                  <article key={item.title} className="feature-card">
+                    <h4>{item.title}</h4>
+                    <p>{item.body}</p>
+                  </article>
+                ))}
+              </div>
             </div>
           </section>
         ) : (
@@ -741,6 +752,26 @@ function App() {
           </section>
         )}
       </main>
+
+      {modalItem ? (
+        <div className="modal-backdrop" onClick={() => setModalItem(null)}>
+          <div className="modal" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h4>{modalItem.title}</h4>
+              <button className="modal-close" type="button" onClick={() => setModalItem(null)}>
+                �
+              </button>
+            </div>
+            <div className="modal-body">
+              <ul>
+                {modalItem.details.map((line) => (
+                  <li key={line}>{line}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      ) : null}
 
       <footer id="contact" className="footer">
         <div className="footer-inner">
@@ -866,3 +897,9 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
+
