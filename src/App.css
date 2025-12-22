@@ -361,6 +361,196 @@ main {
   padding-bottom: 48px;
 }
 
+.service-guide-tabs {
+  width: 100%;
+  max-width: 1180px;
+  margin: 18px auto 0;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.service-guide-tab {
+  border: none;
+  background: rgba(50, 75, 67, 0.08);
+  color: var(--primary-dark);
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.service-guide-tab:hover {
+  transform: translateY(-1px);
+  background: rgba(50, 75, 67, 0.14);
+}
+
+.service-guide-list {
+  width: 100%;
+  max-width: 1180px;
+  margin: 18px auto 0;
+  display: grid;
+  gap: 22px;
+}
+
+.service-guide-category {
+  display: grid;
+  gap: 12px;
+  justify-items: center;
+}
+
+.service-guide-category-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  text-transform: none;
+  color: var(--accent);
+}
+
+.service-carousel {
+  width: 100%;
+  position: relative;
+  display: grid;
+  gap: 10px;
+}
+
+.service-carousel-track {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding: 12px;
+  padding: 4px 12px 6px;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x;
+}
+
+.service-carousel-track::-webkit-scrollbar {
+  height: 10px;
+}
+
+.service-carousel-track::-webkit-scrollbar-thumb {
+  background: rgba(50, 75, 67, 0.22);
+  border-radius: 999px;
+}
+
+.guide-card {
+  min-width: min(340px, 86%);
+  max-width: 360px;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background: var(--white);
+  display: grid;
+  grid-template-rows: 180px 1fr;
+}
+
+.guide-card-image {
+  background: var(--guide-image);
+  background-size: cover;
+  background-position: center;
+}
+
+.guide-card-body {
+  background: #2fa9a0;
+  color: var(--white);
+  padding: 18px 18px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+  min-height: 230px;
+}
+
+.guide-card-body h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.guide-card-price {
+  margin: 0;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  opacity: 0.95;
+}
+
+.guide-card-list {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 6px;
+  font-weight: 600;
+  line-height: 1.5;
+  opacity: 0.95;
+  flex: 1;
+  overflow: hidden;
+}
+
+.pill.guide-booking {
+  align-self: flex-start;
+  padding: 9px 14px;
+  font-size: 12px;
+  background: var(--accent);
+  color: var(--white);
+  box-shadow: none;
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--primary-dark);
+  font-size: 22px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+  z-index: 2;
+}
+
+.carousel-arrow.left {
+  left: 2px;
+}
+
+.carousel-arrow.right {
+  right: 2px;
+}
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.carousel-dots .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(50, 75, 67, 0.22);
+}
+
+.carousel-dots .dot.active {
+  background: var(--accent);
+}
+
+.service-guide-cta {
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+}
+
 .services-page {
   background: #f1f5f7;
   padding-top: 56px;
@@ -1156,6 +1346,12 @@ main {
 
   .services-card {
     grid-template-rows: 210px 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .guide-card {
+    min-width: 86%;
   }
 }
 

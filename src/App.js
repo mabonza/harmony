@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import './App.css';
 
 const scopeServices = [
@@ -65,6 +65,234 @@ const serviceDetails = [
     image: '/micro-procedure.webp',
   },
 ];
+
+const serviceGuideCategories = [
+  {
+    id: 'general-health',
+    title: 'General Health',
+    items: [
+      {
+        title: 'Wellness & Tests',
+        price: 'From R100',
+        image: '/medic-checkup.webp',
+        details: [
+          'Screening - Blood Pressure, Glucose, BMI',
+          'Rapid Tests - Cholesterol, Haemoglobin, Pregnancy, HIV & Drugs',
+        ],
+      },
+      {
+        title: 'Injections',
+        price: 'From R100',
+        image: '/nurse.webp',
+        details: ['IM, SC, IV', 'Neurobion', 'Voltaren', 'Adult Hepatitis B & more'],
+      },
+      {
+        title: 'Consultation + Medication',
+        price: 'From R400',
+        image: '/doctor-consultation.webp',
+        details: [
+          'Coughs, Colds & Flu',
+          'Urinary Tract Infections',
+          'Diarrhoea & Vomiting',
+          'Allergies & Rashes',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'baby-clinic',
+    title: 'Baby Clinic',
+    items: [
+      {
+        title: 'Consultation + Medication',
+        price: 'From R390',
+        image: '/medic-checkup.webp',
+        details: ['Fever & Flu', 'Coughs & Colds', 'Eczema & Skin Rashes'],
+      },
+      {
+        title: 'Baby Immunisations',
+        price: 'R150',
+        image: '/nurse.webp',
+        details: ['Birth to 2 years', '*Subject to state stock'],
+      },
+      {
+        title: 'Growth & Milestones',
+        price: 'R100',
+        image: '/doctor-consultation.webp',
+        details: ['Weigh-ins & measurements', 'Development checks'],
+      },
+    ],
+  },
+  {
+    id: 'womens-health',
+    title: "Women’s Health",
+    items: [
+      {
+        title: 'Pregnancy',
+        price: 'Test only - R50',
+        image: '/nurse.webp',
+        details: ['Consultation + Test - R390', 'Antenatal first visit - R550'],
+      },
+      {
+        title: 'Pap Smear',
+        price: 'Pap Smear R350 + Lab cost',
+        image: '/nurse.webp',
+        details: ['Implanon / IUD insertion or removal', 'Removal from R450'],
+      },
+      {
+        title: 'Consultation + Medication',
+        price: 'From R390',
+        image: '/doctor-consultation.webp',
+        details: ['General Women’s Health', 'Reproductive health'],
+      },
+    ],
+  },
+  {
+    id: 'mens-health',
+    title: "Men’s Health",
+    items: [
+      {
+        title: 'Consultation + Medication',
+        price: 'From R390',
+        image: '/doctor-consultation.webp',
+        details: ['General consultation', 'Shingles, mumps'],
+      },
+      {
+        title: 'Erectile Dysfunction',
+        price: 'From R550',
+        image: '/doctor-consultation.webp',
+        details: ['Assessment + treatment plan'],
+      },
+      {
+        title: 'Prostate Screening',
+        price: 'From R390 + Lab costs',
+        image: '/doctor-consultation.webp',
+        details: ['Screening + referral as needed'],
+      },
+    ],
+  },
+  {
+    id: 'procedures',
+    title: 'Procedures & Wound Care',
+    items: [
+      {
+        title: 'Minor Procedures',
+        price: 'From R590',
+        image: '/micro-procedure.webp',
+        details: ['Foreign body removal', 'Ear syringing', 'Abscess drainage'],
+      },
+      {
+        title: 'Stabilisation',
+        price: 'From R990',
+        image: '/micro-procedure.webp',
+        details: ['IV fluids, oxygen, retention', 'Extra costs apply'],
+      },
+      {
+        title: 'Sutures & Stitching',
+        price: 'From R650',
+        image: '/micro-procedure.webp',
+        details: ['Wound cleaning', 'Stitch removal'],
+      },
+    ],
+  },
+];
+
+function ServiceGuideCarousel({ items }) {
+  const trackRef = useRef(null);
+  const [pageIndex, setPageIndex] = useState(0);
+  const [pageCount, setPageCount] = useState(1);
+
+  const recalcPages = useCallback(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    const first = el.children[0];
+    const gap = Number.parseFloat(window.getComputedStyle(el).gap || '0') || 0;
+    const itemWidth = first ? first.getBoundingClientRect().width : el.clientWidth;
+    const step = Math.max(1, itemWidth + gap);
+    const visibleCount = Math.max(1, Math.floor((el.clientWidth + gap) / step));
+    const count = Math.max(1, items.length - visibleCount + 1);
+    setPageCount(count);
+
+    const nextIndex = Math.min(count - 1, Math.max(0, Math.round(el.scrollLeft / step)));
+    setPageIndex(nextIndex);
+  }, [items.length]);
+
+  useEffect(() => {
+    recalcPages();
+    window.addEventListener('resize', recalcPages);
+    return () => window.removeEventListener('resize', recalcPages);
+  }, [recalcPages]);
+
+  const handleScroll = () => {
+    const el = trackRef.current;
+    if (!el) return;
+    const first = el.children[0];
+    const gap = Number.parseFloat(window.getComputedStyle(el).gap || '0') || 0;
+    const itemWidth = first ? first.getBoundingClientRect().width : el.clientWidth;
+    const step = Math.max(1, itemWidth + gap);
+    setPageIndex(Math.min(pageCount - 1, Math.max(0, Math.round(el.scrollLeft / step))));
+  };
+
+  const scrollToPage = (next) => {
+    const el = trackRef.current;
+    if (!el) return;
+    const first = el.children[0];
+    const gap = Number.parseFloat(window.getComputedStyle(el).gap || '0') || 0;
+    const itemWidth = first ? first.getBoundingClientRect().width : el.clientWidth;
+    const step = Math.max(1, itemWidth + gap);
+    const target = Math.max(0, Math.min(next, pageCount - 1));
+    el.scrollTo({ left: target * step, behavior: 'smooth' });
+  };
+
+  return (
+    <div className="service-carousel">
+      <button
+        type="button"
+        className="carousel-arrow left"
+        onClick={() => scrollToPage(pageIndex - 1)}
+        aria-label="Previous services"
+      >
+        ‹
+      </button>
+      <div className="service-carousel-track" ref={trackRef} onScroll={handleScroll}>
+        {items.map((item) => (
+          <article
+            key={item.title}
+            className="guide-card"
+            style={{ '--guide-image': `url(${item.image})` }}
+          >
+            <div className="guide-card-image" aria-hidden="true" />
+            <div className="guide-card-body">
+              <h4>{item.title}</h4>
+              {item.price ? <p className="guide-card-price">{item.price}</p> : null}
+              <ul className="guide-card-list">
+                {item.details.map((line) => (
+                  <li key={line}>{line}</li>
+                ))}
+              </ul>
+              <button className="pill guide-booking" type="button">
+                Make a Booking
+              </button>
+            </div>
+          </article>
+        ))}
+      </div>
+      <button
+        type="button"
+        className="carousel-arrow right"
+        onClick={() => scrollToPage(pageIndex + 1)}
+        aria-label="Next services"
+      >
+        ›
+      </button>
+      <div className="carousel-dots" aria-hidden="true">
+        {Array.from({ length: pageCount }).map((_, i) => (
+          <span key={i} className={`dot ${i === pageIndex ? 'active' : ''}`} />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 const aboutCards = [
   {
@@ -285,25 +513,38 @@ function App() {
             <h2>Service Guide</h2>
             <p>For detailed prices, please enquire at the clinic.</p>
           </div>
-          <div className="service-detail-grid">
-            {serviceDetails.map((service, index) => (
-              <article
-                key={service.title}
-                className="service-detail-card"
+          <div className="service-guide-tabs" data-reveal>
+            {serviceGuideCategories.map((category) => (
+              <button
+                key={category.id}
+                type="button"
+                className="service-guide-tab"
+                onClick={() =>
+                  document.getElementById(`service-guide-${category.id}`)?.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start',
+                  })
+                }
+              >
+                {category.title}
+              </button>
+            ))}
+          </div>
+          <div className="service-guide-list">
+            {serviceGuideCategories.map((category, index) => (
+              <div
+                key={category.id}
+                id={`service-guide-${category.id}`}
+                className="service-guide-category"
                 data-reveal
                 style={{ '--delay': `${index * 80}ms` }}
               >
-                <h3>{service.title}</h3>
-                <p className="service-detail-desc">{service.description}</p>
-                <ul className="service-detail-list">
-                  {service.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </article>
+                <h3 className="service-guide-category-title">{category.title}</h3>
+                <ServiceGuideCarousel items={category.items} />
+              </div>
             ))}
           </div>
-          <div style={{ marginTop: 18 }}>
+          <div className="service-guide-cta">
             <button className="pill ghost" type="button" onClick={() => handleNav('services')}>
               View Services Page
             </button>
