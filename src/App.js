@@ -111,34 +111,17 @@ const serviceGuideCategories = [
 
 const leadershipTeam = [
   {
-    name: 'Dr Doris Nyembwe',
-    role: 'Medical Lead MP 0725935',
+    // name: 'Dr Doris Nyembwe',
+    // role: 'Medical Lead MP 0725935',
     image: '/R390-1024x1024.png',
   },
 ];
 
-const networkFeatures = [
-  {
-    title: 'THE HARMONY HEALTH WAY',
-    body:
-      'A patient-centred approach that delivers accessible, compassionate, and professional healthcare services, ensuring quality care for individuals and families at every stage of life.',
-  },
-  {
-    title: 'Our Care Approach',
-    body:
-      'Harmony Health Hub provides comprehensive healthcare services focused on prevention, early detection, and long-term wellbeing. Through general consultations, men’s and women’s health services, and minor procedures, we ensure personalised care tailored to each patient’s needs.',
-  },
-  {
-    title: 'Clinical Excellence',
-    body:
-      'Our experienced healthcare professionals deliver safe, reliable, and efficient medical services, guided by compassion, respect, and professionalism. Every consultation and procedure is designed to prioritise patient comfort, dignity, and peace of mind.',
-  },
-];
-
-function ServiceGuideCarousel({ items }) {
+function ServiceGuideCarousel({ items, onBook }) {
   const trackRef = useRef(null);
   const [pageIndex, setPageIndex] = useState(0);
   const [pageCount, setPageCount] = useState(1);
+  const handleBook = onBook || (() => {});
 
   const recalcPages = useCallback(() => {
     const el = trackRef.current;
@@ -208,7 +191,7 @@ function ServiceGuideCarousel({ items }) {
                   <li key={line}>{line}</li>
                 ))}
               </ul>
-              <button className="pill guide-booking" type="button">
+              <button className="pill guide-booking" type="button" onClick={handleBook}>
                 Make a Booking
               </button>
             </div>
@@ -248,15 +231,6 @@ const aboutCards = [
     image:
       '/AdobeStock_499543937.webp',
   },
-];
-
-const partners = [
-  { name: 'Peotona Holdings', logo: '/Peotona.png' },
-  { name: 'Shoprite', logo: '/Shoprite-Logo-900x500.jpg' },
-  { name: 'Checkers', logo: '/checkers.jpg' },
-  { name: 'Medirite', logo: '/Medirite.png' },
-  { name: 'Western Cape Government', logo: '/WCG_logo.jpg' },
-  { name: 'Bolt', logo: '/Bolt_logo.png' },
 ];
 
 const medicalLead = {
@@ -377,11 +351,17 @@ function App() {
             <button type="button" onClick={() => handleNav('about')}>
               About
             </button>
-            <button type="button" onClick={() => handleNav('contact')}>
-              Contact
-            </button>
-          </nav>
-          <button className="pill primary booking-btn">Make a Booking</button>
+          <button type="button" onClick={() => handleNav('contact')}>
+            Contact
+          </button>
+        </nav>
+          <button
+            type="button"
+            className="pill primary booking-btn"
+            onClick={() => handleNav('contact')}
+          >
+            Make a Booking
+          </button>
         </div>
       </header>
 
@@ -400,21 +380,19 @@ function App() {
               professional service.
             </p>
             <div className="hero-actions">
-              <button className="pill primary">Make a Booking</button>
+              <button className="pill primary" type="button" onClick={() => handleNav('contact')}>
+                Make a Booking
+              </button>
               <button className="pill ghost" type="button" onClick={() => handleNav('services')}>
                 View All Services
               </button>
             </div>
           </div>
           <div className="hero-figure" data-reveal>
-            <div className="consultation-card">
-              <span>Consultation</span>
-              <strong>From</strong>
-              <span>R400</span>
-            </div>
+            
             <div
               className="team-photo"
-              style={{ '--team-photo': 'url("/R390-1024x1024.png")' }}
+              style={{ '--team-photo': 'url("/main.webp")' }}
             />
           </div>
         </section>
@@ -451,21 +429,6 @@ function App() {
           </div>
         </section>
 
-        <section id="network" className="section network">
-          <h2>National Clinic Network</h2>
-          <p>
-            We operate a growing network of community clinics and occupational
-            healthcare sites across South Africa.
-          </p>
-          <div className="map-card" data-reveal>
-            <div
-              className="map-figure"
-              style={{ '--map-image': 'url("/SA-map.png")' }}
-            />
-            <button className="pill primary">Find Your Clinic</button>
-          </div>
-        </section>
-
         <section id="about" className="section about">
           <h2>About Us</h2>
           <p>
@@ -491,30 +454,6 @@ function App() {
           <button className="pill ghost">Delivered with Compassion, Care, and Convenience.</button>
         </section>
 
-        <section id="partners" className="section partners">
-          <h2>Our Valued Partners</h2>
-          <p>
-            Trusted by leading brands and local communities to deliver
-            accessible healthcare.
-          </p>
-          <div className="partner-logos">
-            {partners.map((partner, index) => (
-              <div
-                key={partner.name}
-                className="partner-chip"
-                data-reveal
-                style={{ '--delay': `${index * 50}ms` }}
-              >
-                {partner.logo ? (
-                  <img src={partner.logo} alt={partner.name} />
-                ) : (
-                  partner.name
-                )}
-              </div>
-            ))}
-          </div>
-          <button className="pill primary">Partner with Us</button>
-        </section>
           </>
         ) : page === 'services' ? (
           <section id="services-page" className="section services-page">
@@ -524,16 +463,6 @@ function App() {
                 Visiting your doctor is the first step of recovery when sick. Our
                 services range to accommodate a host of different conditions.
               </p>
-            </div>
-            <div className="medical-lead-card" data-reveal>
-              <p className="medical-lead-eyebrow">Medical Lead</p>
-              <h3>{medicalLead.name}</h3>
-              <p className="medical-lead-reg">{medicalLead.registration}</p>
-              <ul className="medical-lead-list">
-                {medicalLead.qualifications.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
             </div>
             <div className="services-grid">
               {serviceDetails.map((service, index) => (
@@ -599,7 +528,11 @@ function App() {
                           <li key={line}>{line}</li>
                         ))}
                       </ul>
-                      <button className="pill guide-booking" type="button">
+                      <button
+                        className="pill guide-booking"
+                        type="button"
+                        onClick={() => handleNav('contact')}
+                      >
                         Make a Booking
                       </button>
                     </div>
@@ -662,6 +595,17 @@ function App() {
               ))}
             </div>
 
+            <div className="medical-lead-card" data-reveal>
+              <p className="medical-lead-eyebrow">Medical Lead</p>
+              <h3>{medicalLead.name}</h3>
+              <p className="medical-lead-reg">{medicalLead.registration}</p>
+              <ul className="medical-lead-list">
+                {medicalLead.qualifications.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
+
             <div className="section-heading" data-reveal>
               <h2>Quality Care in Focus</h2>
               <p>Snapshots from across our network highlighting the care we deliver.</p>
@@ -681,21 +625,6 @@ function App() {
                   <h3>{card.title}</h3>
                 </article>
               ))}
-            </div>
-
-            <div className="network-feature" data-reveal>
-              <h3>THE HARMONY HEALTH WAY</h3>
-              <p className="netway-lede">
-                A patient-centred approach that delivers accessible, compassionate, and professional healthcare services, ensuring quality care for individuals and families at every stage of life.
-              </p>
-              <div className="feature-grid">
-                {networkFeatures.map((item) => (
-                  <article key={item.title} className="feature-card">
-                    <h4>{item.title}</h4>
-                    <p>{item.body}</p>
-                  </article>
-                ))}
-              </div>
             </div>
           </section>
         ) : (
@@ -897,9 +826,3 @@ function App() {
 }
 
 export default App;
-
-
-
-
-
-
