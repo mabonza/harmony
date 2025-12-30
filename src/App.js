@@ -46,14 +46,14 @@ const serviceDetails = [
   {
     title: "Women's Health",
     description:
-      'Dedicated to women&apos;s wellbeing with personalised care and preventive screenings.',
+      'Dedicated to women\'s wellbeing with personalised care and preventive screenings.',
     items: ['Consultation', 'Pap Smear', 'Family Planning'],
     image: '/nurse.webp',
   },
   {
     title: "Men's Health",
     description:
-      'Focused on men&apos;s unique health needs with early detection and long-term wellness care.',
+      'Focused on men\'s unique health needs with early detection and long-term wellness care.',
     items: ['Consultation', 'Prostate Screening'],
     image: '/doctor-consultation.webp',
   },
@@ -93,17 +93,23 @@ const serviceGuideCategories = [
           "Medical consultations",
           "Pap smear screening",
           "Family planning services",
+          "insertion and removal of implants",
+          "breastfeeding examination",
         ],
       },
       {
         title: "Men's Health Services",
         image: "/men.webp",
-        details: ["Medical consultations", "Prostate screening"],
+        details: [
+          "Medical consultations", 
+          "Prostate screening",
+          "STI screening and treatment"
+        ],
       },
       {
         title: "Minor Medical Procedures",
         image: "/micro-procedure.webp",
-        details: ["Minor medical procedures (prices available on enquiry)"],
+        details: ["Minor medical procedures"],
       },
     ],
   },
@@ -260,7 +266,7 @@ const contactCards = [
     image: '/whatsap.jpeg',
   },
   {
-    title: 'Head Office',
+    title: 'Physical Address',
     action: 'View on Maps',
     href: 'https://maps.google.com/?q=Unit%2029,%20Frazzitta%20Business%20Park%20Cnr%20of%20Koeberg%20Road%20%26%20Freedomway,%20Milnerton,%207441',
     subtitle:
@@ -455,7 +461,13 @@ function App() {
                   />
                   <span className="icon-fallback">{item.fallback}</span>
                 </span>
-                <h3>{item.title}</h3>
+                <button
+                  type="button"
+                  className="scope-title-link"
+                  onClick={() => handleNav('services')}
+                >
+                  {item.title}
+                </button>
               </article>
             ))}
           </div>
@@ -542,7 +554,7 @@ function App() {
             <section id="service-details" className="section clinic-types">
               <div className="section-heading" data-reveal>
                 <h2>Service Guide</h2>
-                <p>For detailed prices, please enquire at the clinic.</p>
+                <p><strong>For detailed prices available on enquiry</strong></p>
               </div>
               <div className="guide-grid">
                 {serviceGuideCategories[0].items.map((item) => (

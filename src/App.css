@@ -348,6 +348,16 @@ main {
   color: var(--primary-dark);
 }
 
+.scope-title-link {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
 .scope-card h3 {
   margin: 0;
   color: var(--primary-dark);
