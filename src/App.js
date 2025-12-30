@@ -248,15 +248,15 @@ const contactCards = [
   {
     title: 'Send us an email',
     action: 'Email us',
-    href: 'mailto:clinic@harmonyhealthhub.com',
-    subtitle: 'clinic@harmonyhealthhub.com',
+    href: 'mailto:info@clinicharmonyhealth.co.za',
+    subtitle: 'info@clinicharmonyhealth.co.za',
     image: '/email.jpeg',
   },
   {
     title: 'WhatsApp or Call us',
     action: 'WhatsApp',
-    href: 'https://wa.me/27799145367',
-    subtitle: 'Phone: 079 914 5367',
+    href: 'https://wa.me/+27799143367',
+    subtitle: 'Phone: +27799143367',
     image: '/whatsap.jpeg',
   },
   {
@@ -274,6 +274,12 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [page, setPage] = useState('home');
   const [modalItem, setModalItem] = useState(null);
+  const [contactForm, setContactForm] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+  const [contactError, setContactError] = useState('');
 
   useEffect(() => {
     const revealElements = document.querySelectorAll('[data-reveal]');
@@ -321,6 +327,32 @@ function App() {
         el.scrollIntoView({ behavior: 'smooth' });
       }
     }, 50);
+  };
+
+  const handleContactChange = (field, value) => {
+    setContactForm((prev) => ({ ...prev, [field]: value }));
+    setContactError('');
+  };
+
+  const handleContactSubmit = () => {
+    const { name, email, message } = contactForm;
+    const trimmedEmail = email.trim();
+    const trimmedMessage = message.trim();
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail);
+    if (!trimmedEmail || !emailOk) {
+      setContactError('Please enter a valid email address.');
+      return;
+    }
+    if (!trimmedMessage) {
+      setContactError('Please add a message before sending.');
+      return;
+    }
+    setContactError('');
+    const subject = encodeURIComponent('Contact form enquiry');
+    const body = encodeURIComponent(
+      `Name: ${name || 'N/A'}\nEmail: ${trimmedEmail}\n\n${trimmedMessage}`
+    );
+    window.location.href = `mailto:info@clinicharmonyhealth.co.za?subject=${subject}&body=${body}`;
   };
 
   return (
@@ -661,10 +693,26 @@ function App() {
             <div className="contact-body">
               <div className="contact-form" data-reveal>
                 <h3>Send us a message</h3>
-                <input type="text" placeholder="Name" />
-                <input type="email" placeholder="Email" />
-                <textarea placeholder="Message" rows={4} />
-                <button className="pill primary" type="button">
+                <input
+                  type="text"
+                  placeholder="Name"
+                  value={contactForm.name}
+                  onChange={(e) => handleContactChange('name', e.target.value)}
+                />
+                <input
+                  type="email"
+                  placeholder="Email"
+                  value={contactForm.email}
+                  onChange={(e) => handleContactChange('email', e.target.value)}
+                />
+                <textarea
+                  placeholder="Message"
+                  rows={4}
+                  value={contactForm.message}
+                  onChange={(e) => handleContactChange('message', e.target.value)}
+                />
+                {contactError ? <p className="form-error">{contactError}</p> : null}
+                <button className="pill primary" type="button" onClick={handleContactSubmit}>
                   Send Message
                 </button>
               </div>
@@ -688,7 +736,7 @@ function App() {
             <div className="modal-header">
               <h4>{modalItem.title}</h4>
               <button className="modal-close" type="button" onClick={() => setModalItem(null)}>
-                �
+                X
               </button>
             </div>
             <div className="modal-body">
@@ -712,7 +760,7 @@ function App() {
             </button>
             <p>Better care. Better service. Better outcomes.</p>
             <p className="contact">
-              clinic@harmonyhealthhub.com | 079 914 5367
+              info@clinicharmonyhealth.co.za | 079 914 3367
               <br />
               Unit 29, Frazzitta Business Park, Milnerton, 7441
             </p>
@@ -751,7 +799,7 @@ function App() {
             <div className="social-row">
               <a
                 aria-label="WhatsApp"
-                href="https://wa.me/27799145367"
+                href="https://wa.me/+27799143367"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -817,7 +865,7 @@ function App() {
                 </svg>
               </a>
             </div>
-            <p className="legal">(c) 2025 HarmonyHealth. All rights reserved.</p>
+            <p className="legal">(c) 2026 HarmonyHealth. All rights reserved.</p>
           </div>
         </div>
       </footer>

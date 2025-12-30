@@ -898,6 +898,13 @@ main {
   resize: vertical;
 }
 
+.form-error {
+  margin: 0;
+  color: #d13c3c;
+  font-weight: 700;
+  font-size: 13px;
+}
+
 .contact-map iframe {
   width: 100%;
   min-height: 320px;
