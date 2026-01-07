@@ -40,6 +40,7 @@ const serviceDetails = [
       'Wound Care',
       'Removal of Stitches',
       'Nebulisation',
+      'pediatric',
     ],
     image: '/about.webp',
   },
@@ -47,14 +48,14 @@ const serviceDetails = [
     title: "Women's Health",
     description:
       'Dedicated to women\'s wellbeing with personalised care and preventive screenings.',
-    items: ['Consultation', 'Pap Smear', 'Family Planning'],
+    items: ['Consultation', 'Pap Smear', 'Family Planning','insertion and removal of implants','breastfeeding examination','Breasts examination and not breastfeeding'],
     image: '/nurse.webp',
   },
   {
     title: "Men's Health",
     description:
       'Focused on men\'s unique health needs with early detection and long-term wellness care.',
-    items: ['Consultation', 'Prostate Screening'],
+    items: ['Consultation', 'Prostate Screening','STI screening and treatment'],
     image: '/doctor-consultation.webp',
   },
   {
@@ -84,6 +85,7 @@ const serviceGuideCategories = [
           "Wound care",
           "Removal of stitches",
           "Nebulisation",
+          'pediatric',
         ],
       },
       {
@@ -95,6 +97,7 @@ const serviceGuideCategories = [
           "Family planning services",
           "insertion and removal of implants",
           "breastfeeding examination",
+          "Breasts examination and not breastfeeding",
         ],
       },
       {
@@ -109,7 +112,7 @@ const serviceGuideCategories = [
       {
         title: "Minor Medical Procedures",
         image: "/micro-procedure.webp",
-        details: ["Minor medical procedures"],
+        details: ["Minor medical procedures", "Wound Suturing","wound care","Abscesses Incision and Drainage","Excision of small lumpss", "Ear syringing"],
       },
     ],
   },
@@ -119,7 +122,7 @@ const leadershipTeam = [
   {
     // name: 'Dr Doris Nyembwe',
     // role: 'Medical Lead MP 0725935',
-    image: '/R390-1024x1024.png',
+    image: '/R390-1024x1026.webp',
   },
 ];
 
@@ -408,7 +411,7 @@ function App() {
           <>
         <section id="hero" className="hero">
           <div className="hero-copy" data-reveal>
-            <div className="price-pill">Consultation: From R400</div>
+            <div className="price-pill">Pices are available on enquiry.</div>
             <h1>
               HARMONY HEALTH HUB
               <span>Because Your Health Matters Most</span>
@@ -507,6 +510,16 @@ function App() {
                 Visiting your doctor is the first step of recovery when sick. Our
                 services range to accommodate a host of different conditions.
               </p>
+            </div>
+            <div className="service-marquee" data-reveal>
+              <div className="service-marquee-track" aria-hidden="true">
+                <span>
+                  Consultation from R400. For all other services, prices are available on enquiry.
+                </span>
+                <span>
+                  Consultation from R400. For all other services, prices are available on enquiry.
+                </span>
+              </div>
             </div>
             <div className="services-grid">
               {serviceDetails.map((service, index) => (
@@ -793,18 +806,7 @@ function App() {
                 Contact
               </button>
             </div>
-            <div>
-              <h4>Network</h4>
-              <button type="button" onClick={() => handleNav('home')}>
-                Clinics
-              </button>
-              <button type="button" onClick={() => handleNav('home')}>
-                Occupational
-              </button>
-              <button type="button" onClick={() => handleNav('home')}>
-                Partners
-              </button>
-            </div>
+        
           </div>
           <div className="footer-social">
             <h4>Connect</h4>

@@ -568,6 +568,48 @@ main {
   padding-bottom: 64px;
 }
 
+.service-marquee {
+  width: min(960px, 92vw);
+  margin: 18px auto 0;
+  padding: 12px 0;
+  overflow: hidden;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(50, 75, 67, 0.08), rgba(233, 75, 88, 0.12));
+  border: 1px solid rgba(50, 75, 67, 0.15);
+  box-shadow: 0 12px 22px rgba(0, 0, 0, 0.06);
+}
+
+.service-marquee-track {
+  display: flex;
+  gap: 28px;
+  width: max-content;
+  padding: 0 16px;
+  font-weight: 700;
+  color: var(--primary-dark);
+  letter-spacing: 0.2px;
+  text-transform: none;
+  animation: service-marquee 18s linear infinite;
+}
+
+.service-marquee-track span {
+  white-space: nowrap;
+}
+
+@keyframes service-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-marquee-track {
+    animation: none;
+  }
+}
+
 .medical-lead-card {
   width: min(920px, 100%);
   margin: 18px auto 0;
